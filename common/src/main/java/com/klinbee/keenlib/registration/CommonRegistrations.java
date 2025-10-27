@@ -5,11 +5,9 @@ import com.klinbee.keenlib.placementmodifiers.CountOnEveryLayerPlacement;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 
-public class CommonRegistrations {
+public final class CommonRegistrations {
 
-    @FunctionalInterface
-    public interface Registrar {
-        <C> void register(Registry<C> registry, TypedCodec<C> typedCodec);
+    private CommonRegistrations() {
     }
 
     public static void registerCommon(Registrar registrar) {
