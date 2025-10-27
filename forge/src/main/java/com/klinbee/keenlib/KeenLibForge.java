@@ -9,13 +9,13 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 
-@Mod(KeenlibConstants.MOD_ID)
-public class KeenlibForge {
+@Mod(KeenLibConstants.MOD_ID)
+public class KeenLibForge {
 
     private static final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-    public KeenlibForge() {
-        CommonRegistrations.registerCommon(KeenlibForge::register);
+    public KeenLibForge() {
+        CommonRegistrations.registerCommon(KeenLibForge::register);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -23,7 +23,7 @@ public class KeenlibForge {
         DeferredRegister<C> deferredRegister =
                 DeferredRegister.create(
                         registry.key(),
-                        KeenlibConstants.MOD_NAMESPACE
+                        KeenLibConstants.MOD_NAMESPACE
                 );
         deferredRegister.register(typedCodec.type(), typedCodec::codec);
         deferredRegister.register(eventBus);

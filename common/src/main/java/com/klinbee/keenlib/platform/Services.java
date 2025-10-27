@@ -1,6 +1,6 @@
 package com.klinbee.keenlib.platform;
 
-import com.klinbee.keenlib.KeenlibConstants;
+import com.klinbee.keenlib.KeenLibConstants;
 import com.klinbee.keenlib.platform.services.IPlatformHelper;
 
 import java.util.ServiceLoader;
@@ -24,7 +24,7 @@ public class Services {
         final T loadedService = ServiceLoader.load(clazz)
                 .findFirst()
                 .orElseThrow(() -> new NullPointerException("Failed to load service for " + clazz.getName()));
-        KeenlibConstants.LOG.debug("Loaded {} for service {}", loadedService, clazz);
+        KeenLibConstants.LOG.debug("Loaded {} for service {}", loadedService, clazz);
         return loadedService;
     }
 }
