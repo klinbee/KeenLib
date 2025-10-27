@@ -8,11 +8,11 @@ import net.minecraft.core.registries.BuiltInRegistries;
 public class CommonRegistrations {
 
     @FunctionalInterface
-    public interface RegistrationFunction {
+    public interface Registrar {
         <C> void register(Registry<C> registry, TypedCodec<C> typedCodec);
     }
 
-    public static void registerCommon(RegistrationFunction registrar) {
+    public static void registerCommon(Registrar registrar) {
         /// DensityFunctions
         registrar.register(BuiltInRegistries.DENSITY_FUNCTION_TYPE, ArcCosine.TYPED_CODEC);
 
