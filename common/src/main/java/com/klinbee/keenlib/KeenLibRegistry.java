@@ -1,13 +1,13 @@
-package com.klinbee.keenlib.registration;
+package com.klinbee.keenlib;
 
+import com.klinbee.keenlib.defs.Registrar;
 import com.klinbee.keenlib.densityfunctions.ArcCosine;
 import com.klinbee.keenlib.placementmodifiers.CountOnEveryLayerPlacement;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 
-public final class CommonRegistrations {
+public final class KeenLibRegistry {
 
-    private CommonRegistrations() {
+    private KeenLibRegistry() {
     }
 
     public static void registerCommon(Registrar registrar) {

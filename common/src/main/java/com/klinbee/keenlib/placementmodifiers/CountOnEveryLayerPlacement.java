@@ -1,6 +1,6 @@
 package com.klinbee.keenlib.placementmodifiers;
 
-import com.klinbee.keenlib.registration.TypedCodec;
+import com.klinbee.keenlib.defs.TypedCodec;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
@@ -28,11 +28,12 @@ public class CountOnEveryLayerPlacement extends PlacementModifier {
             .fieldOf("count")
             .xmap(CountOnEveryLayerPlacement::new, placementModifier -> placementModifier.countProvider)
             .codec();
-
+    public static final TypedCodec<PlacementModifierType<?>> TYPED_CODEC = new TypedCodec<>("count_on_every_layer", (PlacementModifierType<CountOnEveryLayerPlacement>) () -> CODEC);
+    private static final short INVALID_LAYER = -32768;
+    private static final List<short[]> LAYERS = new ArrayList<>();
     public static PlacementModifierType<?> TYPE;
-
-    public static final TypedCodec<PlacementModifierType<?>> TYPED_CODEC = new TypedCodec<>("count_on_every_layer",  (PlacementModifierType<CountOnEveryLayerPlacement>) () -> CODEC);
-
+    private static volatile short MAX_LAYER = INVALID_LAYER;
+    private static volatile long PREV_CHUNK = ChunkPos.INVALID_CHUNK_POS;
     private final IntProvider countProvider;
 
     private CountOnEveryLayerPlacement(IntProvider countProvider) {
@@ -47,11 +48,9 @@ public class CountOnEveryLayerPlacement extends PlacementModifier {
         return of(ConstantInt.of(count));
     }
 
-    private static final short INVALID_LAYER = -32768;
-
-    private static volatile List<short[]> LAYERS = new ArrayList<>();
-    private static volatile short MAX_LAYER = INVALID_LAYER;
-    private static volatile long PREV_CHUNK = ChunkPos.INVALID_CHUNK_POS;
+    private static boolean isEmpty(BlockState blockState) {
+        return blockState.isAir() || blockState.is(Blocks.WATER) || blockState.is(Blocks.LAVA);
+    }
 
     @Override
     public Stream<BlockPos> getPositions(PlacementContext placementContext, RandomSource random, BlockPos pos) {
@@ -138,9 +137,5 @@ public class CountOnEveryLayerPlacement extends PlacementModifier {
     @Override
     public PlacementModifierType<?> type() {
         return TYPE;
-    }
-
-    private static boolean isEmpty(BlockState blockState) {
-        return blockState.isAir() || blockState.is(Blocks.WATER) || blockState.is(Blocks.LAVA);
     }
 }

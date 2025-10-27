@@ -1,4 +1,4 @@
-package com.klinbee.keenlib.registration;
+package com.klinbee.keenlib.defs;
 
 import net.minecraft.core.Registry;
 

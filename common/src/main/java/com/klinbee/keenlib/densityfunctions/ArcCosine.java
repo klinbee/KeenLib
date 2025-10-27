@@ -1,6 +1,6 @@
 package com.klinbee.keenlib.densityfunctions;
 
-import com.klinbee.keenlib.registration.TypedCodec;
+import com.klinbee.keenlib.defs.TypedCodec;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.KeyDispatchDataCodec;

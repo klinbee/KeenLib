@@ -1,7 +1,6 @@
 package com.klinbee.keenlib;
 
-import com.klinbee.keenlib.registration.CommonRegistrations;
-import com.klinbee.keenlib.registration.TypedCodec;
+import com.klinbee.keenlib.defs.TypedCodec;
 import net.minecraft.core.Registry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -15,7 +14,7 @@ public class KeenLibForge {
     private static final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
     public KeenLibForge() {
-        CommonRegistrations.registerCommon(KeenLibForge::register);
+        KeenLibRegistry.registerCommon(KeenLibForge::register);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
